@@ -1,0 +1,8 @@
+<odoo>
+    <record id="seq_penal_sanction" model="ir.sequence">
+        <field name="name">Penal Sanction</field>
+        <field name="code">hr.penal.sanction</field>
+        <field name="prefix">PS-</field>
+        <field name="padding">5</field>
+    </record>
+</odoo>

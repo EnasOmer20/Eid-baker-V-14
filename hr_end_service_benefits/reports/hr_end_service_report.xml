@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="report_hr_end_service">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t t-foreach="docs" t-as="doc">
+                    <div class="page">
+                        <h2 style="text-align: center;">End of Service Report</h2>
+                        <table style="width: 100%; margin-top: 20px;" border="1" cellpadding="5" cellspacing="0">
+                            <tr>
+                                <td><strong>Request Name:</strong></td>
+                                <td t-esc="doc.name" />
+                            </tr>
+                            <tr>
+                                <td><strong>Employee:</strong></td>
+                                <td t-esc="doc.employee_id.name" />
+                            </tr>
+                            <tr>
+                                <td><strong>Hiring Date:</strong></td>
+                                <td t-esc="doc.hiring_date" />
+                            </tr>
+                            <tr>
+                                <td><strong>Service Date [Years]:</strong></td>
+                                <td t-esc="doc.service_date_years" />
+                            </tr>
+                            <tr>
+                                <td><strong>Reward Type:</strong></td>
+                                <td t-esc="doc.reword_type" />
+                            </tr>
+                            <tr>
+                                <td><strong>Reason:</strong></td>
+                                <td t-esc="doc.reason_id.name" />
+                            </tr>
+                            <tr>
+                                <td><strong>Total Deserved Amount:</strong></td>
+                                <td t-esc="doc.total_deserved_amount" />
+                            </tr>
+                            <tr>
+                                <td><strong>Requested Amount:</strong></td>
+                                <td t-esc="doc.requested_amount" />
+                            </tr>
+                            <tr>
+                                <td><strong>Previously Disbursed Amount:</strong></td>
+                                <td t-esc="doc.previously_disbursed_amount" />
+                            </tr>
+                            <tr>
+                                <td><strong>Available Amount:</strong></td>
+                                <td t-esc="doc.available_amount" />
+                            </tr>
+                            <tr>
+                                <td><strong>Approval Date:</strong></td>
+                                <td t-esc="doc.date_approval" />
+                            </tr>
+                            <tr>
+                                <td><strong>Payment Date:</strong></td>
+                                <td t-esc="doc.date_payment" />
+                            </tr>
+                            <tr>
+                                <td><strong>Status:</strong></td>
+                                <td t-esc="doc.state" />
+                            </tr>
+                        </table>
+                        <p style="margin-top: 20px;">Notes: <t t-esc="doc.notes" /></p>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_hr_end_service_report" model="ir.actions.report">
+        <field name="name">End of Service Report</field>
+        <field name="model">hr.end.service</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hr_end_service_benefits.report_hr_end_service</field>
+        <field name="report_file">hr_end_service_benefits.report_hr_end_service</field>
+        <field name="print_report_name">'End_of_Service_Report_ - %s' % (object.employee_id.name)</field>
+        <field name="binding_model_id" ref="model_hr_end_service"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

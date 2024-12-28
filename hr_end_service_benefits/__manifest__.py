@@ -1,0 +1,21 @@
+{
+    'name': 'HR End of Service Benefits',
+    'version': '17.0.1.0',
+    'summary': 'Manage End of Service Benefits for Employees',
+    'description': 'Module to manage employee end-of-service requests and benefits',
+    'category': 'Human Resources',
+    'author': 'Einas Omer',
+    'depends': ['hr', 'hr_contract','contact_enhancements','hr_holidays', 'account', 'mail'],
+    'data': [
+        'security/ir.model.access.csv',
+        'views/hr_end_of_service_views.xml',
+        'views/hr_end_service_reason_views.xml',
+        'views/res_config_settings_views.xml',
+        'views/hr_employee_views.xml',
+        'data/sequence.xml',
+        'reports/hr_end_service_report.xml',
+    ],
+    'installable': True,
+    'application': True,
+    'auto_install': False,
+}

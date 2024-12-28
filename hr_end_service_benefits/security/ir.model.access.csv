@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_end_service_reason,access_hr_end_service_reason,model_hr_end_service_reason,base.group_user,1,1,1,1
+access_hr_end_service_reason_line,access_hr_end_service_reason_line,model_hr_end_service_reason_line,base.group_user,1,1,1,1
+access_hr_end_service,access_hr_end_service,model_hr_end_service,base.group_user,1,1,1,1
+

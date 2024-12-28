@@ -1,0 +1,61 @@
+<odoo>
+    <!-- Wizard action definition -->
+    <record id="action_employee_late_overtime_wizard" model="ir.actions.act_window">
+        <field name="name">Approve Late &amp; Overtime</field>
+        <field name="res_model">employee.late.overtime.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_employee_late_overtime"
+              name="Approve Late &amp; Overtime"
+              parent="hr_attendance.menu_hr_attendance_root"
+              action="action_employee_late_overtime_wizard"/>
+
+    <!-- The form view of the wizard -->
+    <record id="view_employee_late_overtime_wizard_form" model="ir.ui.view">
+        <field name="name">employee.late.overtime.wizard.form</field>
+        <field name="model">employee.late.overtime.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Employee Late &amp; Overtime">
+                <sheet>
+                    <group>
+                        <field name="employee_id"/>
+                        <field name="date_start"/>
+                        <field name="date_end"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_get_attendance" type="object" string="Get Attendances" class="btn-primary"/>
+                    <button string="Close" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View for HR Attendance -->
+    <record id="view_hr_attendance_tree_with_buttons" model="ir.ui.view">
+        <field name="name">hr.attendance.tree.with.buttons</field>
+        <field name="model">hr.attendance</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="check_in"/>
+                <field name="check_out"/>
+                <field name="late"/>
+                <field name="overtime"/>
+                <field name="approved_late"/>
+                <field name="approved_overtime"/>
+                <button name="action_approve_late"
+                        string="Approve Late"
+                        type="object"
+                        class="oe_highlight"
+                        attrs="{'invisible': [('late', '=', 0)]}"/>
+                <button name="action_approve_overtime"
+                        string="Approve Overtime"
+                        type="object"
+                        class="oe_highlight"
+                        attrs="{'invisible': [('overtime', '=', 0)]}"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

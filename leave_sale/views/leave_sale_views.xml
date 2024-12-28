@@ -1,0 +1,67 @@
+<odoo>
+    <record id="view_leave_sale_tree" model="ir.ui.view">
+        <field name="name">leave.sale.tree</field>
+        <field name="model">leave.sale</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="days_to_sell"/>
+                <field name="sale_amount"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_leave_sale_form" model="ir.ui.view">
+        <field name="name">leave.sale.form</field>
+        <field name="model">leave.sale</field>
+        <field name="arch" type="xml">
+            <form string="Leave Sale Request">
+                <header>
+                    <button string="Submit" type="object" name="action_submit"
+                            class="oe_highlight" attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                    <button string="Approve" type="object" name="action_approve"
+                            class="oe_highlight" attrs="{'invisible': [('state', '!=', 'submitted')]}"/>
+                    <button string="Reject" type="object" name="action_reject"
+                            class="oe_button" attrs="{'invisible': [('state', '!=', 'submitted')]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_button" icon="fa-money" attrs="{'invisible': [('receipt_count', '=', 0)]}" name="action_view_receipt" type="object">
+                            <field name="receipt_count" string="Receipts"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h2>
+                            <field name="name"/>
+                        </h2>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="annual_leave_days"/>
+                        </group>
+                        <group>
+                            <field name="days_to_sell"/>
+                            <field name="sale_amount" readonly="1"/>
+                            <field name="approver_id" invisible="1"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_leave_sale_requests" model="ir.actions.act_window">
+        <field name="name">Leave Sale Requests</field>
+        <field name="res_model">leave.sale</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

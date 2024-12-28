@@ -1,0 +1,8 @@
+<odoo>
+    <record id="seq_end_of_service" model="ir.sequence">
+        <field name="name">End of Service Sequence</field>
+        <field name="code">end.of.service</field>
+        <field name="prefix">EOS-</field>
+        <field name="padding">5</field>
+    </record>
+</odoo>

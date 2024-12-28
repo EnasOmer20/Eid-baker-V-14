@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_penal_sanction_user,access_hr_penal_sanction_user,model_hr_penal_sanction,base.group_user,1,1,1,1
+access_hr_penal_category,hr.penal.category,model_hr_penal_category,,1,1,1,1
+access_hr_penal_stage,hr.penal.stage,model_hr_penal_stage,,1,1,1,1
+access_hr_penal_violation,hr.penal.violation,model_hr_penal_violation,,1,1,1,1

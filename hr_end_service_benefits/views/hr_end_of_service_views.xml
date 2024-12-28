@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="view_hr_end_service_form" model="ir.ui.view">
+        <field name="name">hr.end.service.form</field>
+        <field name="model">hr.end.service</field>
+        <field name="arch" type="xml">
+            <form string="End of Service Request">
+                <header>
+                    <button name="action_submit" type="object" string="Submit" states="draft" class="oe_highlight"/>
+                    <button name="action_approve_hr" type="object" string="Approve (HR)" states="hr_approval" class="oe_highlight"/>
+                    <button name="action_approve_accounting" type="object" string="Approve (Accounting)" states="accounting" class="oe_highlight"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,hr_approval,accounting,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" icon="fa-money" attrs="{'invisible': [('receipt_count', '=', 0)]}" name="action_view_receipt" type="object">
+                            <field name="receipt_count" string="Receipts" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h2>
+                            <field name="name"/>
+                        </h2>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="hiring_date" readonly="1"/>
+                            <field name="service_date_years" readonly="1"/>
+                            <field name="years" readonly="1"/>
+                            <field name="months" readonly="1"/>
+                            <field name="days" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="date_request"/>
+                            <field name="reword_type"/>
+                            <field name="reason_id"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="unpaid_leave_days" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="is_partial" invisible="1"/>
+                            <field name="total_deserved_amount" readonly="1"/>
+                            <field name="previously_disbursed_amount" readonly="1"/>
+                            <field name="available_amount" readonly="1"/>
+                            <field name="requested_amount" attrs="{'invisible': [('is_partial', '=', False)]}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Notes">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View -->
+    <record id="view_hr_end_service_tree" model="ir.ui.view">
+        <field name="name">hr.end.service.tree</field>
+        <field name="model">hr.end.service</field>
+        <field name="arch" type="xml">
+            <tree string="End of Service Requests" decoration-danger="state == 'draft'" decoration-success="state == 'done'">
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="reword_type"/>
+                <field name="date_request"/>
+                <field name="state"/>
+                <field name="total_deserved_amount"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Pivot View -->
+    <record id="view_hr_end_service_pivot" model="ir.ui.view">
+        <field name="name">hr.end.service.pivot</field>
+        <field name="model">hr.end.service</field>
+        <field name="arch" type="xml">
+            <pivot string="End of Service Analysis">
+                <field name="employee_id" type="row"/>
+                <field name="state" type="row"/>
+                <field name="reason_id" type="col" />
+                <field name="requested_amount" type="measure"/>
+                <field name="previously_disbursed_amount" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_hr_end_service_search" model="ir.ui.view">
+        <field name="name">hr.end.service.search</field>
+        <field name="model">hr.end.service</field>
+        <field name="arch" type="xml">
+            <search string="End of Service">
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="reword_type"/>
+                <field name="date_request"/>
+                <field name="state"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_hr_end_service" model="ir.actions.act_window">
+        <field name="name">End of Service</field>
+        <field name="res_model">hr.end.service</field>
+        <field name="view_mode">tree,form,pivot</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a new End of Service Request.
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem id="menu_hr_end_service_root_root" name="End of Service" parent="hr.menu_hr_root" sequence="10"/>
+    <menuitem id="menu_hr_end_service" name="End of Service Requests" parent="menu_hr_end_service_root_root" action="action_hr_end_service" sequence="10"/>
+</odoo>

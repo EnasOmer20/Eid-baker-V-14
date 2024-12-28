@@ -1,0 +1,16 @@
+<odoo>
+    <record id="view_hr_penal_violation_form" model="ir.ui.view">
+        <field name="name">hr.penal.violation.form</field>
+        <field name="model">hr.penal.violation</field>
+        <field name="arch" type="xml">
+            <form string="Penal Sanction Violation">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+<!--                        <field name="category_id"/>-->
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

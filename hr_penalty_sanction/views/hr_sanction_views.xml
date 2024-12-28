@@ -1,0 +1,80 @@
+<odoo>
+    <record id="view_hr_penal_sanction_form" model="ir.ui.view">
+        <field name="name">hr.penal.sanction.form</field>
+        <field name="model">hr.penal.sanction</field>
+        <field name="arch" type="xml">
+            <form string="Penal Sanctions">
+                <!-- Buttons -->
+                <header>
+                    <button name="action_first_approval" string="First Approval" type="object"
+                            class="oe_highlight" attrs="{'invisible': [('state', '!=', 'draft')], 'readonly': [('state', '!=', 'draft')]}"/>
+                    <button name="action_second_approval" string="Second Approval" type="object"
+                           class="oe_highlight" attrs="{'invisible': [('state', '!=', 'first_approval')]}"/>
+                    <button name="action_hr_confirm" string="Confirm" type="object"
+                            class="oe_highlight" attrs="{'invisible': [('state', '!=', 'second_approval')]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h2>
+                            <field name="name"/>
+                        </h2>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="first_approver_id" invisible="1"/>
+                            <field name="second_approver_id" invisible="1"/>
+                            <field name="hr_manager_id" invisible="1"/>
+                            <field name="category_id"/>
+                            <field name="instance_count" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="date"/>
+                            <field name="violation_id"/>
+                            <field name="stage_id"/>
+                            <field name="is_salary_deduction" invisible="1"/>
+                            <field name="amount" attrs="{'invisible': [('is_salary_deduction', '=', False)],'required': [('is_salary_deduction', '=', True)]}"/>
+                            <field name="notes"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View -->
+    <record id="view_hr_penal_sanction_tree" model="ir.ui.view">
+        <field name="name">hr.penal.sanction.tree</field>
+        <field name="model">hr.penal.sanction</field>
+        <field name="arch" type="xml">
+            <tree string="Penal Sanctions">
+                <field name="employee_id"/>
+                <field name="violation_id"/>
+                <field name="category_id"/>
+                <field name="instance_count"/>
+                <field name="date"/>
+                <field name="notes"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action to Open Penal Sanctions -->
+    <record id="action_hr_penal_sanction" model="ir.actions.act_window">
+        <field name="name">Penal Sanctions</field>
+        <field name="res_model">hr.penal.sanction</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p>Create and track employee violations and their occurrence instances.</p>
+        </field>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem id="menu_hr_penal_sanction" name="Penal Sanctions"
+              parent="hr.menu_hr_root" action="action_hr_penal_sanction"/>
+</odoo>

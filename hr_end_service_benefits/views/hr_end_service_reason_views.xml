@@ -1,0 +1,66 @@
+<odoo>
+    <!-- Tree View for HrEndServiceReason -->
+    <record id="view_hr_end_service_reason_tree" model="ir.ui.view">
+        <field name="name">hr.end.service.reason.tree</field>
+        <field name="model">hr.end.service.reason</field>
+        <field name="arch" type="xml">
+            <tree string="Reasons for Ending Service">
+                <field name="name"/>
+                <field name="deserved_after"/>
+                <field name="is_partial"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View for HrEndServiceReason -->
+    <record id="view_hr_end_service_reason_form" model="ir.ui.view">
+        <field name="name">hr.end.service.reason.form</field>
+        <field name="model">hr.end.service.reason</field>
+        <field name="arch" type="xml">
+            <form string="Reason for Ending Service">
+                <sheet>
+                    <div class="oe_title">
+                        <h2>
+                            <field name="name"/>
+                        </h2>
+                    </div>
+                    <group>
+                        <field name="deserved_after" />
+                        <field name="is_partial"/>
+                    </group>
+
+                    <notebook>
+                        <page string="Reason Lines">
+                            <field name="line_ids">
+                                <tree string="Reason Lines" editable="bottom">
+                                    <field name="name" width="40%"/>
+                                    <field name="deserved_for_first" width="30%" />
+                                    <field name="deserved_month_for_year" width="30%" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action for HrEndServiceReason -->
+    <record id="action_hr_end_service_reason" model="ir.actions.act_window">
+        <field name="name">Reasons for Ending Service</field>
+        <field name="res_model">hr.end.service.reason</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_create">
+                Create a new reason for ending service
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem id="menu_hr_end_service_root" name="End of Service" sequence="16" parent="hr.menu_human_resources_configuration"/>
+
+    <menuitem id="menu_hr_end_service_reason" name="End of Service Reasons"
+              parent="menu_hr_end_service_root" action="action_hr_end_service_reason" sequence="10"/>
+
+</odoo>

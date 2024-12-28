@@ -1,0 +1,20 @@
+{
+    'name': 'Leave Sale',
+    'version': '1.0',
+    'category': 'Human Resources',
+    'summary': 'Module to allow employees to sell leave days',
+    'description': 'Manage employee leave sale requests with approval levels.',
+    'author': 'Einas Omer',
+    'depends': ['hr','hr_holidays','hr_contract','account','contact_enhancements'],
+    'data': [
+        'security/ir.model.access.csv',
+        'views/leave_sale_views.xml',
+        'views/leave_sale_menu.xml',
+        'views/hr_employee_views.xml',
+        'views/hr_leave_type_views.xml',
+        'data/sequence.xml',
+    ],
+    'installable': True,
+    'application': False,
+    'license': 'LGPL-3',
+}

@@ -1,0 +1,4 @@
+<odoo>
+    <menuitem id="menu_leave_sale_requests" name="Leave Sale Requests"
+              parent="hr_holidays.menu_hr_holidays_approvals" action="action_leave_sale_requests"/>
+</odoo>

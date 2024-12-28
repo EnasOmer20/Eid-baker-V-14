@@ -1,0 +1,20 @@
+<odoo>
+    <record id="view_hr_penal_stage_form" model="ir.ui.view">
+        <field name="name">hr.penal.stage.form</field>
+        <field name="model">hr.penal.stage</field>
+        <field name="arch" type="xml">
+            <form string="Penal Sanction Stage">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="warning"/>
+                        <field name="salary_deduction"/>
+                        <field name="deduction_type" attrs="{'required': [('salary_deduction', '=', True)]}"/>
+                        <field name="termination"/>
+                        <field name="termination_eosb"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

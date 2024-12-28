@@ -1,0 +1,22 @@
+<odoo>
+    <record id="view_visa_expiration_issue_tree" model="ir.ui.view">
+        <field name="name">visa.expiration.issue.tree</field>
+        <field name="model">visa.expiration.issue</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="employee_id" widget="many2one"/>
+                <field name="visa_expiration_date"/>
+                <field name="alert_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_visa_expiration_issue" model="ir.actions.act_window">
+        <field name="name">Visa Expiration Issues</field>
+        <field name="res_model">visa.expiration.issue</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem id="menu_hr_visa_expiration" name="Visa Expiration Issues"
+              parent="hr.menu_hr_root" action="action_visa_expiration_issue"/>
+</odoo>

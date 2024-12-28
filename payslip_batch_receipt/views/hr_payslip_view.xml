@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="hr_payslip_form_inherit" model="ir.ui.view">
+        <field name="name">hr.payslip.form.inherit</field>
+        <field name="model">hr.payslip</field>
+        <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form" />
+        <field name="arch" type="xml">
+            <!-- Add receipt_id after move_id -->
+            <field name="move_id" position="after">
+                <field name="receipt_id"  attrs="{'invisible': [('receipt_id', '=', False)]}"/>
+            </field>
+        </field>
+    </record>
+</odoo>

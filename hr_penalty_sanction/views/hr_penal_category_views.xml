@@ -1,0 +1,53 @@
+<odoo>
+    <record id="view_hr_penal_category_form" model="ir.ui.view">
+        <field name="name">hr.penal.category.form</field>
+        <field name="model">hr.penal.category</field>
+        <field name="arch" type="xml">
+            <form string="Penal Sanctions Category">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="stage_ids">
+                            <tree >
+                                <field name="name"/>
+                                <field name="warning"/>
+                                <field name="salary_deduction"/>
+                                <field name="deduction_type"/>
+                                <field name="termination"/>
+                                <field name="termination_eosb"/>
+                            </tree>
+                        </field>
+                        <field name="violation_ids">
+                            <tree >
+                                <field name="name"/>
+                                <field name="category_id"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_hr_penal_category_tree" model="ir.ui.view">
+        <field name="name">hr.penal.category.tree</field>
+        <field name="model">hr.penal.category</field>
+        <field name="arch" type="xml">
+            <tree string="Penal Sanctions Categories">
+                <field name="name"/>
+                <field name="stage_ids" widget="many2many_tags"/>
+                <field name="violation_ids" />
+            </tree>
+        </field>
+    </record>
+
+     <record id="action_hr_penal_category" model="ir.actions.act_window">
+        <field name="name">Penal Sanctions Categories</field>
+        <field name="res_model">hr.penal.category</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_hr_penal_config" name="Penal Sanctions" parent="hr.menu_human_resources_configuration"/>
+    <menuitem id="menu_hr_penal_category" name="Penal Sanctions Categories" parent="menu_hr_penal_config" action="action_hr_penal_category"/>
+
+</odoo>
