@@ -4,14 +4,12 @@ class EmployeeLateOvertimeWizard(models.TransientModel):
     _name = 'employee.late.overtime.wizard'
     _description = 'Employee Late and Overtime'
 
-    employee_id = fields.Many2one('hr.employee', string='Employee', required=True)
     date_start = fields.Date(string='Start Date', required=True)
     date_end = fields.Date(string='End Date', required=True)
 
     def action_get_attendance(self):
         """Fetch attendances with late or overtime between selected dates and open the tree view"""
         domain = [
-            ('employee_id', '=', self.employee_id.id),
             ('check_in', '>=', self.date_start),
             ('check_out', '<=', self.date_end),
             '|',  # OR operator

@@ -20,7 +20,6 @@
             <form string="Employee Late &amp; Overtime">
                 <sheet>
                     <group>
-                        <field name="employee_id"/>
                         <field name="date_start"/>
                         <field name="date_end"/>
                     </group>
@@ -39,6 +38,7 @@
         <field name="model">hr.attendance</field>
         <field name="arch" type="xml">
             <tree>
+                <field name="employee_id" widget="many2one"/>
                 <field name="check_in"/>
                 <field name="check_out"/>
                 <field name="late"/>
